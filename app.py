@@ -808,7 +808,7 @@ def create_advanced_visualizations(rules: pd.DataFrame) -> None:
                     line=dict(color='rgba(58, 71, 80, 0.6)', width=0.6)
                 ),
                 text=[f"Lift: {lift:.2f}" for lift in top_rules['lift']],
-                textposition="middle right",
+                textposition="middle inside",
                 hovertemplate="<b>%{y}</b><br>" +
                             "Impact Score: %{x:.4f}<br>" +
                             "Confidence: %{marker.color:.1%}<br>" +
@@ -1022,7 +1022,7 @@ def create_advanced_visualizations(rules: pd.DataFrame) -> None:
                     sizemode='diameter'
                 ),
                 text=area_summary['business_area'],
-                textposition="middle center",
+                textposition="middle inside",
                 textfont=dict(size=10, color='white', family="Inter"),
                 hovertemplate="<b>%{text}</b><br>" +
                             "Patterns: %{customdata}<br>" +
