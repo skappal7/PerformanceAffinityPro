@@ -863,7 +863,7 @@ def create_advanced_visualizations(rules: pd.DataFrame) -> None:
                 </ul>
             </div>
             """.format(
-                len(rules[rules['confidence'] >= 0.8]),
+                len(rules[rules['confidence'] >= 0.8], unsafe_allow_html=True),
                 len(rules[rules['lift'] > 2.0]),
                 len(rules[rules['support'] > 0.05])
             ), unsafe_allow_html=True)
@@ -1330,7 +1330,7 @@ def show_data_overview():
                 • QA_Compliance (float 0-1)<br>
                 • Escalations (integer)<br>
                 • RepeatContacts7d (integer)<br>
-                • Absenteeism (float 0-1)
+                • Absenteeism (float 0-1, unsafe_allow_html=True)
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1349,7 +1349,7 @@ def show_data_overview():
     if st.session_state.analysis_data is not None:
         df = st.session_state.analysis_data
         
-        st.markdown("### 📊 Dataset Overview")
+        st.markdown("### 📊 Dataset Overview", unsafe_allow_html=True)
         
         # Data quality metrics
         col1, col2, col3, col4 = st.columns(4)
@@ -1406,7 +1406,7 @@ def show_data_overview():
                 st.success("✅ No missing values detected!")
         
         # KPI Distribution visualizations
-        st.markdown("### 📊 KPI Distributions")
+        st.markdown("### 📊 KPI Distributions", unsafe_allow_html=True)
         
         if 'CSAT' in df.columns and 'AHT_sec' in df.columns:
             col1, col2 = st.columns(2)
@@ -1470,7 +1470,7 @@ def show_analysis_setup():
         else:
             st.info("💡 Using statistical quantiles to create balanced groups")
         
-        st.markdown("### 🧮 Mining Parameters")
+        st.markdown("### 🧮 Mining Parameters", unsafe_allow_html=True)
         
         # Algorithm selection
         algorithm = st.selectbox(
@@ -1562,7 +1562,7 @@ def show_analysis_setup():
         """, unsafe_allow_html=True)
     
     # Analysis execution
-    st.markdown("### 🚀 Execute Analysis")
+    st.markdown("### 🚀 Execute Analysis", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([1, 1, 1])
     
@@ -1674,10 +1674,10 @@ def show_results_insights():
     # Executive summary
     with st.expander("📋 Executive Summary", expanded=True):
         exec_summary = create_executive_summary(rules, data, insights)
-        st.markdown(exec_summary)
+        st.markdown(exec_summary, unsafe_allow_html=True)
     
     # Key metrics
-    st.markdown("### 📊 Performance Metrics")
+    st.markdown("### 📊 Performance Metrics", unsafe_allow_html=True)
     create_professional_metrics_cards(rules, data)
     
     # Main visualizations
@@ -1685,7 +1685,7 @@ def show_results_insights():
     
     # Interactive network
     if st.session_state.network_html:
-        st.markdown("### 🌐 Interactive Pattern Network")
+        st.markdown("### 🌐 Interactive Pattern Network", unsafe_allow_html=True)
         st.markdown("""
         <div class="helper-text">
             Explore the relationships between KPI patterns. Hover over nodes and edges for details. 
@@ -1696,7 +1696,7 @@ def show_results_insights():
         st.components.v1.html(st.session_state.network_html, height=650)
     
     # Detailed rules table
-    st.markdown("### 📋 Detailed Pattern Rules")
+    st.markdown("### 📋 Detailed Pattern Rules", unsafe_allow_html=True)
     
     # Filters for rules table
     col1, col2, col3 = st.columns(3)
@@ -1755,7 +1755,7 @@ def show_results_insights():
     
     # Pattern insights
     if insights:
-        st.markdown("### 🎯 Key Insights")
+        st.markdown("### 🎯 Key Insights", unsafe_allow_html=True)
         
         tab1, tab2, tab3 = st.tabs(["💡 Discoveries", "⚠️ Risk Patterns", "📈 Recommendations"])
         
@@ -1818,7 +1818,7 @@ def show_action_items():
     st.subheader("🎯 Action Items & Coaching Recommendations")
     
     # Priority matrix
-    st.markdown("### 📊 Priority Action Matrix")
+    st.markdown("### 📊 Priority Action Matrix", unsafe_allow_html=True)
     
     # Create priority categories
     high_priority = rules[
@@ -1869,7 +1869,7 @@ def show_action_items():
         """, unsafe_allow_html=True)
     
     # Actionable recommendations
-    st.markdown("### 🎯 Coaching & Process Recommendations")
+    st.markdown("### 🎯 Coaching & Process Recommendations", unsafe_allow_html=True)
     
     # Generate specific recommendations based on rules
     recommendations = generate_detailed_recommendations(high_priority, medium_priority)
@@ -1891,12 +1891,12 @@ def show_action_items():
             <p><strong>👥 Target Audience:</strong> {rec['audience']}</p>
             <p><strong>⏱️ Timeline:</strong> {rec['timeline']}</p>
             
-            {f'<div style="background: #f3f4f6; padding: 12px; border-radius: 6px; margin-top: 12px;"><strong>📝 Implementation Notes:</strong> {rec["notes"]}</div>' if rec.get('notes') else ''}
+            {('<div style="background: #f3f4f6; padding: 12px; border-radius:6px;"><strong>Notes:</strong> ' + rec.get('notes','') + '</div>') if rec.get('notes') else ''}
         </div>
         """, unsafe_allow_html=True)
     
     # Coaching plan generator
-    st.markdown("### 📚 Coaching Plan Generator")
+    st.markdown("### 📚 Coaching Plan Generator", unsafe_allow_html=True)
     
     selected_patterns = st.multiselect(
         "Select patterns for coaching plan",
@@ -1907,7 +1907,7 @@ def show_action_items():
     if selected_patterns and st.button("📋 Generate Coaching Plan", type="primary"):
         coaching_plan = generate_coaching_plan(selected_patterns, rules)
         
-        st.markdown("#### 📋 Generated Coaching Plan")
+        st.markdown("#### 📋 Generated Coaching Plan", unsafe_allow_html=True)
         st.markdown(f"""
         <div class="pro-container">
             <h4>🎯 Coaching Focus Areas</h4>
@@ -1925,7 +1925,7 @@ def show_action_items():
         """, unsafe_allow_html=True)
     
     # Performance tracking template
-    st.markdown("### 📊 Performance Tracking Template")
+    st.markdown("### 📊 Performance Tracking Template", unsafe_allow_html=True)
     
     if st.button("📈 Create Tracking Template"):
         tracking_template = create_tracking_template(rules)
@@ -2108,7 +2108,7 @@ def show_export_reports():
     data = st.session_state.analysis_data
     insights = st.session_state.business_insights or {}
     
-    st.markdown("### 📄 Available Exports")
+    st.markdown("### 📄 Available Exports", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns(3)
     
@@ -2191,7 +2191,7 @@ def show_export_reports():
             )
     
     # Complete package download
-    st.markdown("### 📦 Complete Analysis Package")
+    st.markdown("### 📦 Complete Analysis Package", unsafe_allow_html=True)
     
     if st.button("📁 Create Complete Package", type="primary", use_container_width=True):
         complete_package = create_complete_export_package(rules, data, insights)
@@ -2205,7 +2205,7 @@ def show_export_reports():
         )
     
     # Report scheduling
-    st.markdown("### ⏰ Report Scheduling")
+    st.markdown("### ⏰ Report Scheduling", unsafe_allow_html=True)
     
     st.info("""
     🔄 **Automated Reporting**: In a production environment, you could schedule:
@@ -2216,7 +2216,7 @@ def show_export_reports():
     """)
     
     # Usage analytics
-    st.markdown("### 📊 Usage Analytics")
+    st.markdown("### 📊 Usage Analytics", unsafe_allow_html=True)
     
     if st.session_state.analysis_timestamp:
         col1, col2 = st.columns(2)
