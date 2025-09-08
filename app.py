@@ -1040,7 +1040,7 @@ def create_advanced_visualizations(rules: pd.DataFrame) -> None:
                 font=dict(family="Inter, sans-serif")
             )
             
-            fig_business.update_xaxis(tickformat='.1%')
+            fig_business.update_layout(xaxis=dict(tickformat='.1%'))
             
             st.plotly_chart(fig_business, use_container_width=True)
             
