@@ -1148,10 +1148,11 @@ def generate_professional_sample_data_enhanced(n_agents: int = 1200, seed: int =
     })
     
     return df
-
+    
+from __future__ import annotations
 # Run the enhanced application
 if __name__ == "__main__":
-    main_enhanced()from __future__ import annotations
+    main_enhanced()
 
 # enhanced_app.py — Enhanced Performance Affinity Analysis Platform
 # ================================================================
