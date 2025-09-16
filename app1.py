@@ -1151,7 +1151,9 @@ def generate_professional_sample_data_enhanced(n_agents: int = 1200, seed: int =
 
 # Run the enhanced application
 if __name__ == "__main__":
-    main_enhanced()# enhanced_app.py — Enhanced Performance Affinity Analysis Platform
+    main_enhanced()from __future__ import annotations
+
+# enhanced_app.py — Enhanced Performance Affinity Analysis Platform
 # ================================================================
 # Improved version with CSV/Parquet support, flexible column mapping,
 # better network visualization, and proper HTML rendering fixes.
@@ -1167,8 +1169,6 @@ if __name__ == "__main__":
 #   streamlit-option-menu>=0.3.6
 #   pyarrow>=15.0  # For Parquet support
 #   fastparquet>=2023.10.1  # Alternative Parquet engine
-
-from __future__ import annotations
 import io
 import json
 import textwrap
