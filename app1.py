@@ -3147,10 +3147,10 @@ if __name__ == "__main__":
 # END OF COMPLETE ENHANCED APPLICATION
 # =============================================================================
 """
-Complete Enhanced Performance Affinity Analytics Platform
+Performance Affinity Analytics Platform
 =========================================================
 
-This is the complete, production-ready version with all enhancements including:
+Features of the app:
 
 1. **Flexible Column Mapping System** - Map any data schema to required fields
 2. **Parquet Support** - High-performance data I/O with Parquet format
@@ -3161,10 +3161,4 @@ This is the complete, production-ready version with all enhancements including:
 7. **Performance Optimizations** - Sampling, caching, parallel processing options
 8. **Professional UI/UX** - Clean interface with status indicators and navigation
 
-To run:
-1. Save all parts into a single app.py file
-2. Install dependencies: pip install -r requirements.txt
-3. Run: streamlit run app.py
-
-The app handles both uploaded data and generates realistic sample data for testing.
 """
