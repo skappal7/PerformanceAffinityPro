@@ -698,7 +698,10 @@ def mine_association_rules_enhanced(basket_df, algorithm="fpgrowth",
         rules["antecedents_str"] = rules["antecedents"].apply(
             lambda x: " + ".join(sorted(list(x))) if isinstance(x, frozenset) else str(x)
         )
-        
+        rules["consequents_str"] = rules["consequents"].apply(
+            lambda x: " + ".join(sorted(list(x))) if isinstance(x, frozenset) else str(x)
+        )
+                
         # Enhanced business metrics
         rules["impact_score"] = (
             rules["support"] * rules["confidence"] * rules["lift"]
