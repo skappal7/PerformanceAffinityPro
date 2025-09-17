@@ -849,7 +849,7 @@ def generate_pattern_recommendations(rules):
     return recommendationsx, frozenset) else str(x)
         )
         rules["consequents_str"] = rules["consequents"].apply(
-            lambda x: " + ".join(sorted(list(x))) if isinstance(
+            lambda x: " + ".join(sorted(list(x))) if isinstance(x, frozenset) else str(x)
 
             # =============================================================================
 # Part 4: ACTION ITEMS AND UI HELPER FUNCTIONS
