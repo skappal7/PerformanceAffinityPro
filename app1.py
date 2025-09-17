@@ -846,12 +846,9 @@ def generate_pattern_recommendations(rules):
             "timeline": "3-6 weeks"
         })
     
-    return recommendationsx, frozenset) else str(x)
-        )
-        rules["consequents_str"] = rules["consequents"].apply(
-            lambda x: " + ".join(sorted(list(x))) if isinstance(x, frozenset) else str(x)
+    return recommendations
 
-            # =============================================================================
+# =============================================================================
 # Part 4: ACTION ITEMS AND UI HELPER FUNCTIONS
 # =============================================================================
 
